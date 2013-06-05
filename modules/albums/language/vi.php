@@ -37,4 +37,5 @@ $lang_module['select_pic'] = "Chọn ảnh";
 $lang_module['slide'] = "Slide";
 $lang_module['title']= "Tiêu đề";
 $lang_module['upload'] = "Upload ảnh";
+$lang_module['view'] = "Xem";
 ?>

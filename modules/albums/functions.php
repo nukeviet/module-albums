@@ -25,7 +25,7 @@ if (!defined('SHADOWBOX'))
 $adb = new albumdb();
 $result = $adb->getAllActiveAlbumOBW();
 $albums = array();
-$aID = isset($array_op[1]) ? intval($array_op[1]) : 0;
+$aID = isset($array_op[1]) ? intval( end( explode('-', $array_op[1] )) ) : 0;
 while ($rs = $db->sql_fetchrow($result))
 {
     $listimg = array();

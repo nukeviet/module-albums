@@ -9,15 +9,18 @@
 
 if ( ! defined( 'NV_IS_MOD_ALBUMS' ) ) die( 'Stop!!!' );
 
-if ( isset( $array_op[3] ) )
+if ( isset( $array_op[2] ) )
 {
-    $page = substr( $array_op[3], 5 );
+    $page = substr( $array_op[2], 5 );
 }
 else
 {
     $page = 0;
 }
-
+if( $aID == 0 ){
+    nv_info_die( $lang_global['error_404_title'], $lang_global['error_404_title'], $lang_global['error_404_content'] );
+    exit();
+}
 $result = $adb->getAllAlbumCotent( $aID );
 
 if ( $db->sql_numrows( $result ) > 0 )
@@ -28,11 +31,11 @@ if ( $db->sql_numrows( $result ) > 0 )
     );
     $page_title = "Album " . $rs['name'];
     
-    $base_url = NV_BASE_SITEURL . "?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=view/" . $aID . "/" . $rs['alias'];
+    $base_url = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=view/" . $rs['alias'] . '-'. $aID;
     
     $result = $adb->updateAlbumNumView( $aID );
     
-    $per_page = 6;
+    $per_page = 20;
     
     $numcat = $db->sql_numrows( $adb->getAlbumImgs( $aID ) );
     
@@ -49,7 +52,7 @@ if ( $db->sql_numrows( $result ) > 0 )
         );
     }
     
-    $list_pages = nv_news_page( $base_url, $all_page, $per_page, $page );
+    $list_pages = nv_alias_page( $lang_module['view'], $base_url, $all_page, $per_page, $page );
     $contents = call_user_func( "view", $albumimg, $album, $list_pages );
 }
 else

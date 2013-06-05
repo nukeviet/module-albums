@@ -78,7 +78,7 @@ if ( $nv_Request->get_int( 'add', 'post' ) == 1 )
                     
                     if ( empty( $data['name'] ) )
                     {
-                        list( $tmh, $data['name'] ) = split( '[/.]', $data['path'] );
+                         $data['name'] = $basename;
                     }
                     
                     if ( $adb->addNewImg( $data['name'], $data['path'], $data['description'], $thumb_name, $data['albumid'], $num + 1 ) )

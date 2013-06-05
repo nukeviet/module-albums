@@ -22,7 +22,7 @@ function main ( $albums )
         $xtpl->assign( 'TITLE_ALBUM', $album['name'] );
         $xtpl->assign( 'NUM_PHOTO', $album['num_photo'] );
         $xtpl->assign( 'NUM_VIEW', $album['num_view'] );
-        $url_link = NV_BASE_SITEURL . "?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&" . NV_NAME_VARIABLE . "=" . $module_name . '&' . NV_OP_VARIABLE . "=view/" . $album['albumid'] . "/" . $album['alias'];
+        $url_link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=view/" . $album['alias'] . '-'. $album['albumid'];
         $xtpl->assign( 'URL_VIEW', $url_link );
         $xtpl->assign( 'DES_AL', $album['description'] );
         
@@ -33,7 +33,7 @@ function main ( $albums )
                 if ( ! nv_is_url( $listimg['thumb_name'] ) && $listimg['thumb_name'] != "" )
                 {
                     $listimg['thumb_name'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . "/" . $module_name . "/" . $listimg['thumb_name'];
-                    $listimg['path'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . "/" . $module_name . $listimg['path'];
+                    $listimg['path'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . "/" . $module_name . "/" . $listimg['path'];
                 }
                 else
                 {
@@ -80,7 +80,7 @@ function view ( $albumimg, $ialbum, $list_pages )
             if ( ! nv_is_url( $album['path'] ) && $album['thumb_name'] != "" )
             {
                 $album['thumb_name'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . "/" . $module_name . "/" . $album['thumb_name'];
-                $album['path'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . "/" . $module_name . $album['path'];
+                $album['path'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . "/" . $module_name . "/" . $album['path'];
             }
             else
             {
